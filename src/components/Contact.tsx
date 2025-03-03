@@ -34,7 +34,7 @@ export default function ContactSection() {
       await emailjs.sendForm(
         serviceId,
         templateId,
-        formRef.current,
+        formRef.current ?? '',
         publicKey
       );
 

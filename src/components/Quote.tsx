@@ -2,7 +2,7 @@ import { motion, useInView, useMotionValue, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
 export default function QuoteSection() {
-  const quoteRef = useRef(null);
+  const quoteRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(quoteRef, { once: true, amount: 0.3 });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -10,7 +10,7 @@ export default function QuoteSection() {
   
   // Mouse parallax effect
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       if (quoteRef.current) {
         const rect = quoteRef.current.getBoundingClientRect();
         setMousePosition({
@@ -206,12 +206,12 @@ export default function QuoteSection() {
           <motion.div
             key={i}
             className="absolute w-2 h-2 rounded-full bg-purple-200 opacity-40"
-            style={{
-              left: `${15 + i * 15}%`,
-              top: `${20 + i * 10}%`,
-              x: useTransform(x, [-50, 50], [-10 - i * 5, 10 + i * 5]),
-              y: useTransform(y, [-50, 50], [-10 - i * 3, 10 + i * 3]),
-            }}
+            // style={{
+            //   left: `${15 + i * 15}%`,
+            //   top: `${20 + i * 10}%`,
+            //   x: useTransform(x, [-50, 50], [-10 - i * 5, 10 + i * 5]),
+            //   y: useTransform(y, [-50, 50], [-10 - i * 3, 10 + i * 3]),
+            // }}
           />
         ))}
       </div>
