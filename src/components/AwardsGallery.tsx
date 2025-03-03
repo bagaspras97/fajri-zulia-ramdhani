@@ -72,7 +72,7 @@ export default function AwardsGallerySection() {
   }, [awardImages.length]);
 
   return (
-    <section className="w-full py-16 sm:py-24 bg-[#F9F7FB] text-gray-800">
+    <section className="w-full py-16 sm:py-24 bg-white text-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <motion.div
           className="text-center mb-12"
@@ -85,7 +85,7 @@ export default function AwardsGallerySection() {
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#B284BE] to-[#9A6AAF]">
               Recognitions & Awards
             </span>
-            <div className="h-1 w-32 bg-gradient-to-r from-[#B284BE] to-[#9A6AAF] rounded-full mx-auto mt-3"></div>
+            {/* <div className="h-1 w-32 bg-gradient-to-r from-[#B284BE] to-[#9A6AAF] rounded-full mx-auto mt-3"></div> */}
           </h2>
           <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
             A collection of memorable moments from award ceremonies recognizing

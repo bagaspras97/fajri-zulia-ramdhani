@@ -24,7 +24,7 @@ export default function HeroSection() {
       {/* Add the Navbar component here */}
       <Navbar />
 
-      <section className="relative w-full min-h-screen bg-gradient-to-br from-white to-[#f9f5fb] overflow-hidden pt-24 font-inter">
+      <section className="relative w-full min-h-screen bg-gradient-to-b from-white to-purple-50 overflow-hidden pt-24 font-inter">
         {/* Abstract shapes */}
         <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-[#edd8f3] to-[#d9bfe2] rounded-bl-full opacity-40"></div>
         <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-[#edd8f3] to-[#d9bfe2] rounded-tr-full opacity-40"></div>
@@ -60,7 +60,7 @@ export default function HeroSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 font-poppins">
               <a
-                href="#about"
+                href="#portfolio"
                 className="px-8 py-3 border border-[#B284BE] text-[#B284BE] rounded-lg font-medium hover:bg-[#f9f5fb] transition-all flex items-center justify-center"
               >
                 <span>Portfolio</span>
