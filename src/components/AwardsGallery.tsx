@@ -187,29 +187,19 @@ export default function AwardsGallerySection() {
                     <p className="text-white text-xs sm:text-sm font-medium truncate">
                       {award.title}
                     </p>
-                    <p className="text-white/80 text-xs hidden sm:block">{award.year}</p>
+                    <p className="text-white/80 text-xs hidden sm:block">
+                      {award.year}
+                    </p>
                     {/* Only show year on mobile */}
-                    <p className="text-white/80 text-xs sm:hidden">{award.year}</p>
+                    <p className="text-white/80 text-xs sm:hidden">
+                      {award.year}
+                    </p>
                   </div>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* Call to Action */}
-        {/* <div className="text-center mt-8 sm:mt-12">
-          <p className="text-gray-600 italic text-sm sm:text-base mb-3 sm:mb-4">
-            "Every recognition is a reflection of the dedication to advancing
-            knowledge and fostering understanding."
-          </p>
-          <a
-            href="#publications"
-            className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-[#B284BE] to-[#9A6AAF] text-white text-sm sm:text-base font-medium rounded-full shadow-lg hover:shadow-xl transition-all"
-          >
-            View Publications
-          </a>
-        </div> */}
       </div>
     </section>
   );
