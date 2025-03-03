@@ -176,7 +176,7 @@ export default function PortfolioSection() {
             <div className="relative overflow-hidden">
               <div 
                 ref={carouselRef}
-                className="flex transition-transform duration-500 ease-out"
+                className="flex transition-transform duration-500 ease-out pb-2 md:pb-3"
                 style={{ transform: `translateX(-${currentIndex * (100 / (window.innerWidth >= 768 ? 3 : 1))}%)` }}
               >
                 {books.map((book, index) => (
@@ -184,7 +184,7 @@ export default function PortfolioSection() {
                     key={index} 
                     className="w-full md:w-1/3 flex-shrink-0 px-4"
                   >
-                    <div className="group h-full bg-gradient-to-b from-[#F9F7FB] to-[#F4F0F8] rounded-xl overflow-hidden shadow-lg border border-[#B284BE]/10 transition-all duration-300 hover:shadow-[#B284BE]/20 hover:border-[#B284BE]/30">
+                    <div className="group h-full bg-gradient-to-b from-[#F9F7FB] to-[#F4F0F8] rounded-xl overflow-hidden shadow-md  border border-[#B284BE]/10 transition-all duration-300 hover:shadow-[#B284BE]/20 hover:border-[#B284BE]/30">
                       <div className="h-64 overflow-hidden relative">
                         <img 
                           src={book.image} 

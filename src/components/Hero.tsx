@@ -1,4 +1,4 @@
-import profile from "../assets/profile.jpeg";
+import profile from "../assets/profile2.jpeg";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Navbar from "./Navbar"; // Import the Navbar component
@@ -121,7 +121,8 @@ export default function HeroSection() {
         {/* Social links */}
         <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-4 z-10">
           <a
-            href="#"
+            href="https://www.tiktok.com/@fajrizuliar"
+            target="_blank"
             className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-[#B284BE] hover:bg-[#f9f5fb] transition-all"
           >
             <svg
@@ -130,11 +131,12 @@ export default function HeroSection() {
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z" />
+              <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
             </svg>
           </a>
           <a
-            href="#"
+            href="https://www.instagram.com/fajrizuliaramdhani"
+            target="_blank"
             className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-[#B284BE] hover:bg-[#f9f5fb] transition-all"
           >
             <svg
@@ -147,7 +149,8 @@ export default function HeroSection() {
             </svg>
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/fajri-zulia-ramdhani-b89460149"
+            target="_blank"
             className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-[#B284BE] hover:bg-[#f9f5fb] transition-all"
           >
             <svg

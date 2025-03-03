@@ -97,13 +97,13 @@ export default function Navbar() {
             >
               Portfolio
             </a>
-            <a 
+            {/* <a 
               href="#contact" 
               className="text-gray-700 hover:text-[#B284BE] font-medium transition-colors py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact
-            </a>
+            </a> */}
             <a
               href="#contact"
               className="px-5 py-2 bg-[#B284BE] rounded-lg text-white font-medium hover:bg-[#9d6bab] transition-all shadow-lg shadow-[#B284BE]/20 inline-block text-center"
