@@ -1,8 +1,21 @@
-// AboutSection.jsx (Redesigned with improved mobile padding)
-import profile from "../assets/cantik.jpeg";
+// AboutSection.jsx (Dengan perbaikan animasi)
+import { useEffect, useState } from "react";
+import profile from "../assets/profile1.jpeg";
 import { motion } from "framer-motion";
 
 export default function AboutSection() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Gunakan useEffect untuk memastikan konten terlihat segera setelah komponen dimuat
+  useEffect(() => {
+    // Tambahkan sedikit penundaan untuk memastikan DOM telah dirender sepenuhnya
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       id="about"
@@ -12,15 +25,13 @@ export default function AboutSection() {
         <motion.div
           className="text-center mb-10 sm:mb-16"
           initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
           transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold inline-block relative">
+          <h2 className="text-3xl md:text-4xl font-bold inline-block relative mt-8">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#B284BE] to-[#9A6AAF]">
               About Me
             </span>
-            {/* <div className="h-1 w-24 bg-gradient-to-r from-[#B284BE] to-[#9A6AAF] rounded-full mx-auto mt-3"></div> */}
           </h2>
         </motion.div>
 
@@ -30,9 +41,8 @@ export default function AboutSection() {
           <motion.div
             className="lg:w-2/5 w-full px-2 sm:px-4"
             initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -30 }}
             transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
           >
             <div className="relative">
               {/* Decorative element - hidden on small screens */}
@@ -63,43 +73,14 @@ export default function AboutSection() {
               {/* Decorative element - hidden on small screens */}
               <div className="absolute -bottom-4 -right-4 w-16 sm:w-24 h-16 sm:h-24 border-b-4 border-r-4 border-[#B284BE] opacity-70 hidden sm:block"></div>
             </div>
-
-            {/* Stats in horizontal layout */}
-            <div className="grid grid-cols-4 gap-2 sm:gap-3 mt-8 sm:mt-10">
-              <div className="text-center">
-                <div className="text-[#B284BE] font-bold text-xl sm:text-2xl">
-                  5+
-                </div>
-                <div className="text-gray-600 text-xs">Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="text-[#B284BE] font-bold text-xl sm:text-2xl">
-                  10+
-                </div>
-                <div className="text-gray-600 text-xs">Publications</div>
-              </div>
-              <div className="text-center">
-                <div className="text-[#B284BE] font-bold text-xl sm:text-2xl">
-                  3+
-                </div>
-                <div className="text-gray-600 text-xs">Books</div>
-              </div>
-              <div className="text-center">
-                <div className="text-[#B284BE] font-bold text-xl sm:text-2xl">
-                  4+
-                </div>
-                <div className="text-gray-600 text-xs">Scholarships</div>
-              </div>
-            </div>
           </motion.div>
 
           {/* Right side - About content with timeline style */}
           <motion.div
             className="lg:w-3/5 w-full px-2 sm:px-4 mt-8 lg:mt-0"
             initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 30 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            viewport={{ once: true }}
           >
             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 text-gray-800">
               A dedicated <span className="text-[#B284BE]">Lecturer</span>,{" "}

@@ -81,7 +81,7 @@ export default function AwardsGallerySection() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold inline-block relative">
+          <h2 className="text-3xl md:text-4xl font-bold inline-block relative mt-10">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#B284BE] to-[#9A6AAF]">
               Recognitions & Awards
             </span>
