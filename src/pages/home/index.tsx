@@ -1,7 +1,4 @@
-import React from "react";
 import HeroSection from "../../components/Hero";
-import AboutSection from "../../components/About";
-import EducationSection from "../../components/Education";
 
 const HomePage = () => {
   return (

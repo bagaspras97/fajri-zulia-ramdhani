@@ -1,35 +1,13 @@
-import { useState, useEffect } from "react";
-import AboutSection from "./components/About";
-import AwardsGallerySection from "./components/AwardsGallery";
-import ContactSection from "./components/Contact";
-import CopyrightSection from "./components/Copyright";
-import EducationSection from "./components/Education";
-import HeroSection from "./components/Hero";
-import PortfolioSection from "./components/Portfolio";
-import QuoteSection from "./components/Quote";
 import Navbar from "./components/Navbar";
 import { Outlet } from "react-router-dom";
 
 function App() {
-  const [activePage, setActivePage] = useState(1);
-
-  // Handle page navigation
-  const navigateToPage = (pageNumber: number) => {
-    setActivePage(pageNumber);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  // Update navbar to add page navigation
-  useEffect(() => {
-    // This effect is for any initialization needed when switching pages
-  }, [activePage]);
-
   return (
     <>
-      <Navbar activePage={activePage} onNavigate={navigateToPage} />
+      <Navbar />
 
       <Outlet />
-      
+
       {/* {activePage === 1 && (
         // Page 1
         <div id="page-1">

@@ -1,16 +1,13 @@
-import React from 'react'
-import AboutSection from '../../components/About'
-import EducationSection from '../../components/Education'
+import AboutSection from "../../components/About";
+import EducationSection from "../../components/Education";
 
-type Props = {}
-
-const ProfilePage = (props: Props) => {
+const ProfilePage = () => {
   return (
     <>
-        <AboutSection />
-        <EducationSection />
+      <AboutSection />
+      <EducationSection />
     </>
-  )
-}
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;

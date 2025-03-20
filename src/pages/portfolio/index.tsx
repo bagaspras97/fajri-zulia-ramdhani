@@ -1,4 +1,3 @@
-import React from "react";
 import PortfolioSection from "../../components/Portfolio";
 
 const PortfolioPage = () => {

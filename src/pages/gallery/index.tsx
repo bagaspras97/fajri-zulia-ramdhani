@@ -1,10 +1,7 @@
-import React from "react";
 import AwardsGallerySection from "../../components/AwardsGallery";
 
 const GalleryPage = () => {
-  return (
-    <AwardsGallerySection />
-  );
+  return <AwardsGallerySection />;
 };
 
 export default GalleryPage;
