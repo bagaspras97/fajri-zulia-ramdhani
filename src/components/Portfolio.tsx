@@ -1,52 +1,20 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { books } from "../data/books";
 import { journals } from "../data/journals";
 import { articles } from "../data/articles";
+import BookCarousel from "./BookCarousel";
 
 export default function PortfolioSection() {
   // State for carousel
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [displayCount, setDisplayCount] = useState(3);
-  const [maxIndex, setMaxIndex] = useState(0);
-  const carouselRef = useRef(null);
 
   // Tabs and filter states
   const [activeTab, setActiveTab] = useState("journals");
 
-  // Handle responsive display
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width >= 1280) {
-        setDisplayCount(3);
-      } else if (width >= 768) {
-        setDisplayCount(2);
-      } else {
-        setDisplayCount(1);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   // Update maxIndex when display count changes
-  useEffect(() => {
-    setMaxIndex(Math.max(0, books.length - displayCount));
-  }, [displayCount, books.length]);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0));
-  };
+  // useEffect(() => {
+  //   setMaxIndex(Math.max(0, books.length - displayCount));
+  // }, [displayCount, books.length]);
 
   // Animation variants
   const fadeInUp = {
@@ -83,172 +51,7 @@ export default function PortfolioSection() {
         </motion.div>
 
         {/* Books Section */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-          className="mb-20"
-        >
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-2xl font-semibold text-gray-800 flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 mr-2 text-[#B284BE]"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                />
-              </svg>
-              Buku
-            </h3>
-            <div className="flex space-x-3">
-              <button
-                onClick={prevSlide}
-                disabled={currentIndex === 0}
-                className={`flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
-                  currentIndex === 0
-                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-white text-[#B284BE] border border-[#B284BE] hover:bg-[#B284BE] hover:text-white shadow-md"
-                }`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
-              <button
-                onClick={nextSlide}
-                disabled={currentIndex === maxIndex}
-                className={`flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
-                  currentIndex === maxIndex
-                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-white text-[#B284BE] border border-[#B284BE] hover:bg-[#B284BE] hover:text-white shadow-md"
-                }`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Books Carousel */}
-          <div className="relative overflow-hidden pb-8">
-            <div
-              ref={carouselRef}
-              className="flex transition-transform duration-500 ease-out"
-              style={{
-                transform: `translateX(-${
-                  currentIndex * (100 / displayCount)
-                }%)`,
-              }}
-            >
-              {books.map((book, index) => (
-                <div
-                  key={index}
-                  className={`px-4 flex-shrink-0 ${
-                    displayCount === 3
-                      ? "w-1/3"
-                      : displayCount === 2
-                      ? "w-1/2"
-                      : "w-full"
-                  }`}
-                >
-                  <div className="group h-full bg-white rounded-xl overflow-hidden border border-gray-100 transition-all duration-300 hover:border-[#B284BE]/30 hover:shadow-xl hover:shadow-[#B284BE]/10 hover:-translate-y-2">
-                    <div className="relative h-48 md:h-64 overflow-hidden">
-                      <img
-                        src={book.image}
-                        alt={book.title}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {/* <div className="absolute bottom-4 left-4 right-4">
-                          <button className="w-full text-sm text-white bg-[#B284BE] px-4 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 hover:bg-[#9A6AAF]">
-                            Lihat Detail
-                          </button>
-                        </div> */}
-                      </div>
-                      <div className="absolute top-4 right-4 bg-[#B284BE] text-white text-xs px-3 py-1 rounded-full shadow-md">
-                        {book.year}
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h4 className="text-lg font-bold mb-2 text-gray-800 line-clamp-2">
-                        {book.title}
-                      </h4>
-                      <p className="text-gray-600 text-sm line-clamp-3 mb-4">
-                        {book.description}
-                      </p>
-                      <div className="flex justify-end">
-                        <button className="inline-flex items-center px-4 py-2 text-sm text-[#B284BE] border border-[#B284BE] rounded-lg hover:bg-[#B284BE] hover:text-white transition-colors shadow-sm">
-                          Lihat Detail
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4 ml-1"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M14 5l7 7m0 0l-7 7m7-7H3"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Carousel Indicators */}
-          <div className="flex justify-center mt-4 space-x-2">
-            {[...Array(maxIndex + 1)].map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  currentIndex === index
-                    ? "w-6 bg-gradient-to-r from-[#B284BE] to-[#9A6AAF]"
-                    : "bg-gray-300 hover:bg-gray-400"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-        </motion.div>
+        <BookCarousel books={books} />
 
         {/* Academic Publications Section */}
         <motion.div

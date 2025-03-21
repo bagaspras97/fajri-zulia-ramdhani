@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- White background -->
+  <rect width="64" height="64" fill="white"/>
+  
+  <!-- Simple F letter shape -->
+  <path d="M18,14 H46 V22 H26 V30 H40 V38 H26 V50 H18 Z" fill="#B284BE"/>
+</svg>

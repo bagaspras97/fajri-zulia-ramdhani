@@ -1,7 +1,11 @@
-import AwardsGallerySection from "../../components/AwardsGallery";
+import MediaGallerySection from "../../components/MediaGalllery";
 
 const GalleryPage = () => {
-  return <AwardsGallerySection />;
+  return (
+    <>
+      <MediaGallerySection />
+    </>
+  );
 };
 
 export default GalleryPage;
