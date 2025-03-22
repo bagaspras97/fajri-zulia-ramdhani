@@ -65,7 +65,7 @@ const MediaGallerySection: React.FC = () => {
   }, [selectedCategory]);
 
   return (
-    <section className="w-full py-16 sm:py-24 bg-white text-gray-800">
+    <section className="w-full py-16 sm:py-24 bg-white text-gray-800 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Title */}
         <motion.div
