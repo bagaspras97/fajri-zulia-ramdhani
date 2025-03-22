@@ -9,19 +9,25 @@ import Custom404 from "./pages/404";
 import ProfilePage from "./pages/profile/";
 import GalleryPage from "./pages/gallery";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      errorElement: <Custom404 />,
+      children: [
+        { index: true, element: <HomePage /> },
+        { path: "profile", element: <ProfilePage /> },
+        { path: "portfolio", element: <PortfolioPage /> },
+        { path: "gallery", element: <GalleryPage /> },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    errorElement: <Custom404 />,
-    children: [
-      { index: true, element: <HomePage /> },
-      { path: "profile", element: <ProfilePage /> },
-      { path: "portfolio", element: <PortfolioPage /> },
-      { path: "gallery", element: <GalleryPage /> },
-    ],
-  },
-]);
+    basename: "/",
+  }
+);
+
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
