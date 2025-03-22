@@ -1,91 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import desa1 from "../assets/desa1.webp";
-import desa2 from "../assets/desa2.webp";
-import bannerSantri from "../assets/banner-santri.jpeg";
-
-// Define the types for media items
-interface MediaItem {
-  id: number;
-  type: "image" | "video";
-  src: string;
-  thumbnail: string;
-  title: string;
-  description: string;
-  category: string;
-  youtubeId?: string; // Tambahkan properti youtubeId untuk video YouTube
-}
+import { mediaItems, MediaItem } from "../data/media";
 
 const MediaGallerySection: React.FC = () => {
   // Sample media items - replace with your actual content
-  const mediaItems: MediaItem[] = [
-    {
-      id: 1,
-      type: "video",
-      src: "", // Path ke file lokal
-      youtubeId: "elP9MQ0Abdw",
-      thumbnail:
-        "https://i.ytimg.com/vi/elP9MQ0Abdw/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAgCjpErTtJOB90oBQ62_RMvE6-dA",
-      title:
-        "PEMBACAAN KARYA FINALIS 10 BESAR LOMBA PUISI NASIONAL, TEMA : TANAM",
-      description: "",
-      category: "Karya",
-    },
-    {
-      id: 2,
-      type: "video",
-      src: "", // Tidak perlu src untuk video YouTube
-      youtubeId: "yxL8uvtV5hk", // ID video YouTube
-      thumbnail:
-        "https://i.ytimg.com/vi/yxL8uvtV5hk/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAETZHvcuHTnhdjYdJdQ53lNdvOAg",
-      title: "Bahas Buku ABCD Perempuan di Sufada Radio",
-      description: `Kalian yang perempuan tentu sayang dong dengan diri kalian sendiri dan pastinya faham akan bagaimana diri kalian. Buat para lelaki tentunya punya dong perempuan yang kalian sayangi. Misalnya orang tua, saudara, gebetan, temen atau masih sayang sama mantan kamu? ahaha. 
-Di episode kali ini Sufada Corner bakal ngebahas tentang Serba-serbi Perempuan. Hmm... ngeri-ngeri sedap yaa...`,
-      category: "Seminar",
-    },
-    {
-      id: 3,
-      type: "video",
-      src: "",
-      youtubeId: "ZUEGjPCyb8o", // ID video YouTube
-      thumbnail: desa1,
-      title:
-        "Posyandu Inklusif & Pelatihan Memasak PMT di Desa Suwat, Gianyar.",
-      description: "",
-      category: "Community Services",
-    },
-    {
-      id: 4,
-      type: "video",
-      src: "",
-      youtubeId: "tUeeT5mE1VY",
-      thumbnail:
-        "https://i.ytimg.com/vi/tUeeT5mE1VY/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCEv8zWVcQfZ1WirVHaItK3ygcfWQ",
-      title: "Multitask Di Usia Muda, Kenapa Enggak?? #LTNU Let's Talk NU",
-      description: "",
-      category: "Seminar",
-    },
-    {
-      id: 5,
-      type: "video",
-      src: "",
-      youtubeId: "O6RbHFopIVQ",
-      thumbnail: bannerSantri,
-      title: "Santri Punya Usaha - Perempuan Bercerita di Ramadan 2024",
-      description: "",
-      category: "Seminar",
-    },
-    {
-      id: 6,
-      type: "video",
-      src: "",
-      youtubeId: "dZepAVCtmVE",
-      thumbnail: desa2,
-      title: "Kegiatan Beauty Class di Desa Kedisan, Kab Gianyar",
-      description: "",
-      category: "Community Services",
-    },
-  ];
 
   // State for filters, selected media, and modal
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -94,25 +12,11 @@ Di episode kali ini Sufada Corner bakal ngebahas tentang Serba-serbi Perempuan. 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const videoRef = useRef<HTMLIFrameElement | null>(null);
 
-  console.log(selectedCategory, "selectedCategory");
-  console.log(filteredItems, "filteredItems");
-
   // Get unique categories for filter
   const categories = [
     "All",
     ...Array.from(new Set(mediaItems.map((item) => item.category))),
   ];
-
-  // Filter items when category changes
-  useEffect(() => {
-    if (selectedCategory === "All") {
-      setFilteredItems(mediaItems);
-    } else {
-      setFilteredItems(
-        mediaItems.filter((item) => item.category === selectedCategory)
-      );
-    }
-  }, [selectedCategory]);
 
   // Handle media selection and modal
   const openModal = (media: MediaItem) => {
@@ -152,10 +56,10 @@ Di episode kali ini Sufada Corner bakal ngebahas tentang Serba-serbi Perempuan. 
   useEffect(() => {
     const newFilteredItems =
       selectedCategory === "All"
-        ? mediaItems
-        : mediaItems.filter(
-            (item) => item.category.trim() === selectedCategory.trim()
-          );
+        ? [...mediaItems]
+        : mediaItems.filter((item) => {
+            return item.category.trim() === selectedCategory.trim();
+          });
 
     setFilteredItems(newFilteredItems);
   }, [selectedCategory]);
@@ -184,20 +88,22 @@ Di episode kali ini Sufada Corner bakal ngebahas tentang Serba-serbi Perempuan. 
         </motion.div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                selectedCategory === category
-                  ? "bg-[#B284BE] text-white shadow-md"
-                  : "bg-gray-100 text-gray-700 hover:bg-[#B284BE]/20"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+        <div className="relative mb-8 w-full">
+          <div className="flex overflow-x-auto pb-3 hide-scrollbar md:flex-wrap md:justify-center gap-2 no-scrollbar">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap flex-shrink-0 ${
+                  selectedCategory === category
+                    ? "bg-[#B284BE] text-white shadow-md"
+                    : "bg-gray-100 text-gray-700 hover:bg-[#B284BE]/20"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Gallery Grid */}
@@ -213,12 +119,15 @@ Di episode kali ini Sufada Corner bakal ngebahas tentang Serba-serbi Perempuan. 
               key={item.id}
               className="group relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
               variants={itemVariants}
+              initial="hidden" // Tambahkan ini
+              animate="visible" // Tambahkan ini
               onClick={() => openModal(item)}
             >
               <div className="aspect-[16/9] bg-gray-100">
                 <img
                   src={item.thumbnail}
                   alt={item.title}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 {/* Video indicator */}
@@ -253,11 +162,11 @@ Di episode kali ini Sufada Corner bakal ngebahas tentang Serba-serbi Perempuan. 
         </motion.div>
 
         {/* Load More Button */}
-        <div className="text-center mt-12">
+        {/* <div className="text-center mt-12">
           <button className="px-6 py-3 bg-white text-[#B284BE] border border-[#B284BE] rounded-lg font-medium hover:bg-[#B284BE] hover:text-white transition-colors shadow-sm">
             Load More
           </button>
-        </div>
+        </div> */}
 
         {/* Modal for Media View */}
         <AnimatePresence>
